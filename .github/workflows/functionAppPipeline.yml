@@ -44,9 +44,10 @@ jobs:
     - name: Deploy Azure Functions in test environment
       uses: Azure/functions-action@v1
       id: deploy-test-env
+      working-directory: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
       with:
         app-name: ${{ env.AZURE_TEST_FUNCTIONAPP_NAME }}
-        package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+        package: '.'
         publish-profile: ${{ secrets.AZURE_TEST_FUNCTIONAPP_PUBLISH_PROFILE }}
         scm-do-build-during-deployment: true
         enable-oryx-build: true
