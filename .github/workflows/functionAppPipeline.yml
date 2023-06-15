@@ -91,11 +91,17 @@ jobs:
     - name: Checkout GitHub Action
       uses: actions/checkout@v3
 
-    - name: Approvazione manuale
+    - name: Manual approval to deploy in production environment
       uses: trstringer/manual-approval@v1
       with:
         secret: ${{ github.TOKEN }}
-        approvers: trstringer,acdunnigan
+        approvers: francesco-paglia, brunoledda, LucaAndreani97
+        minimum-approvals: 1
+        issue-title: "Deploying from test to production"
+        issue-body: "Please approve or deny the deployment"
+        exclude-workflow-initiator-as-approver: false
+        additional-approved-words: ''
+        additional-denied-words: ''
     
     - name: Deploy Azure Functions in production environment
       uses: Azure/functions-action@v1
