@@ -11,7 +11,7 @@ on:
 
 env:
   AZURE_TEST_FUNCTIONAPP_NAME: 'test-functions-srs'
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'functions'
   PYTHON_VERSION: '3.10'
 
 jobs:
