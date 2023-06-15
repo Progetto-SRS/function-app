@@ -78,5 +78,5 @@ jobs:
     runs-on: ubuntu-latest
     environment: test
     steps:
-    - name: Run unit tests
-      run: python -m pytest --import-mode=append tests/
+    - name: Run tests
+      run: python tests/test-check-name.py

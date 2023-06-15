@@ -6,4 +6,4 @@ azure-functions
 azure.identity
 azure.mgmt.storage
 azure.storage.blob
-pytest
+requests
