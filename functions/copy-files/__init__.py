@@ -12,7 +12,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         try:
             req_body = req.get_json()
         except (ValueError, KeyError):
-            return func.HttpResponse("ERRORE -> Specificare i parametri nomeContainerOrigine, accountStorageOrigine, nomeContainerDestinazione e accountStorageDestinazione", status_code=200) 
+            return func.HttpResponse(body="ERRORE -> Specificare i parametri nomeContainerOrigine, accountStorageOrigine, nomeContainerDestinazione e accountStorageDestinazione", status_code=400) 
         else:
             nomeContainerOrigine = req_body.get('nomeContainerOrigine')
             accountStorageOrigine = req_body.get('accountStorageOrigine')
@@ -36,8 +36,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             blob_client_destinazione = container_destinazione.get_blob_client(blob.name)
             blob_client_destinazione.start_copy_from_url(blob_client_origine.url)
 
-        return func.HttpResponse("SUCCESSO", status_code=200)
+        return func.HttpResponse(body="SUCCESSO", status_code=200)
     else:
-        return func.HttpResponse("ERRORE -> Specificare i parametri nomeContainer e accountStorage", status_code=200)
+        return func.HttpResponse(body="ERRORE -> Specificare i parametri nomeContainer e accountStorage", status_code=400)
 
     #{ "nomeContainerOrigine": "sitoweb", "accountStorageOrigine": "devstoragesrs", "nomeContainerDestinazione": "$web", "accountStorageDestinazione": "webappprova" }

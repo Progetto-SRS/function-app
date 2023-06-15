@@ -10,7 +10,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         try:
             req_body = req.get_json()
         except (ValueError, KeyError):
-            return func.HttpResponse("ERRORE -> Specificare i parametri nomeContainer e accountStorage", status_code=200) 
+            return func.HttpResponse(body="ERRORE -> Specificare i parametri nomeContainer e accountStorage", status_code=400) 
         else:
             nomeContainer = req_body.get('nomeContainer')
             accountStorage = req_body.get('accountStorage')
@@ -23,6 +23,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
         blob_service_client.delete_container(nomeContainer)
 
-        return func.HttpResponse("SUCCESSO", status_code=200)
+        return func.HttpResponse(body="SUCCESSO", status_code=200)
     else:
-        return func.HttpResponse("ERRORE -> Specificare i parametri nomeContainer e accountStorage", status_code=200)
+        return func.HttpResponse(body="ERRORE -> Specificare i parametri nomeContainer e accountStorage", status_code=400)
