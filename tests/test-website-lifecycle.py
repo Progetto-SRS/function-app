@@ -14,7 +14,7 @@ while disponibilita == b"USATO":
     response = requests.get("https://test-functions-srs.azurewebsites.net/api/check-name?nomeSito=" + nomeSito)
     disponibilita = response.content
 assert response.status_code == 200
-assert response.content == b"SUCCESSO"
+assert response.content == b"DISPONIBILE"
 
 # Controllo che il servizio create-account-storage restituisca 'SUCCESSO'
 gruppoRisorse = "test-env"
