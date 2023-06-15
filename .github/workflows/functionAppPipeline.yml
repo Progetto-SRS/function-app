@@ -58,5 +58,8 @@ jobs:
     - name: Checkout GitHub Action
       uses: actions/checkout@v3
 
-    - name: Run tests
+    - name: Run tests of wrong requests
       run: python tests/test-parameters-input.py
+
+    - name: Run tests of successful requests 
+      run: python tests/test-website-lifecycle.py
