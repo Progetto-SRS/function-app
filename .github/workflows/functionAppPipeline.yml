@@ -6,6 +6,7 @@ on:
     - main
     paths:
     - 'functions/**'
+    - 'tests/**'
     - '.github/workflows/functionAppPipeline.yml'
   workflow_dispatch:
 
@@ -49,4 +50,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Run tests
-      run: python .tests/test-check-name.py
+      run: python tests/test-check-name.py
