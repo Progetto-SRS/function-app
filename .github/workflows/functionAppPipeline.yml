@@ -23,14 +23,8 @@ on:
     branches:
     - main
     paths:
-    - 'check-name/**'
-    - 'copy-files/**'
-    - 'create-account-storage/**'
-    - 'create-container/**'
-    - 'delete-account-storage/**'
-    - 'delete-container/**'
-    - 'disable-static-website/**'
-    - 'enable-static-website/**'
+    - 'functions/**'
+    - 'tests/**'
     - '.github/workflows/functionAppPipeline.yml'
   workflow_dispatch:
 
