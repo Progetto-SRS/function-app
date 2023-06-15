@@ -23,6 +23,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
         blob_service_client.create_container(nomeContainer, public_access="container")
 
-        return func.HttpResponse(body="SUCCESSO", status_code=400)
+        return func.HttpResponse(body="SUCCESSO", status_code=200)
     else:
         return func.HttpResponse(body="ERRORE -> Mancano i parametri nomeContainer e accountStorage", status_code=400)
