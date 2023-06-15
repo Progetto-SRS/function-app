@@ -18,7 +18,6 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: test
     steps:
     - name: Checkout GitHub Action
       uses: actions/checkout@v3
@@ -39,15 +38,13 @@ jobs:
   deploy-test-env:
     needs: build
     runs-on: ubuntu-latest
-    environment: test
     steps:     
     - name: Deploy Azure Functions in test environment
       uses: Azure/functions-action@v1
       id: deploy-test-env
-      working-directory: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
       with:
         app-name: ${{ env.AZURE_TEST_FUNCTIONAPP_NAME }}
-        package: '.'
+        package: './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
         publish-profile: ${{ secrets.AZURE_TEST_FUNCTIONAPP_PUBLISH_PROFILE }}
         scm-do-build-during-deployment: true
         enable-oryx-build: true
@@ -55,7 +52,6 @@ jobs:
   test-functions:
     needs: deploy-test-env
     runs-on: ubuntu-latest
-    environment: test
     steps:
     - name: Run tests
       run: python tests/test-check-name.py
