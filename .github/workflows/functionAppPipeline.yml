@@ -6,7 +6,6 @@ on:
     - main
     paths:
     - 'functions/**'
-    - 'tests/**'
     - '.github/workflows/functionAppPipeline.yml'
   workflow_dispatch:
 
@@ -16,7 +15,7 @@ env:
   PYTHON_VERSION: '3.10'
 
 jobs:
-  build:
+  build-and-deploy-test-env:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout GitHub Action
@@ -34,11 +33,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt --target=".python_packages/lib/site-packages"
         popd
-
-  deploy-test-env:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:     
+    
     - name: Deploy Azure Functions in test environment
       uses: Azure/functions-action@v1
       id: deploy-test-env
@@ -50,7 +45,7 @@ jobs:
         enable-oryx-build: true
 
   test-functions:
-    needs: deploy-test-env
+    needs: build-and-deploy-test-env
     runs-on: ubuntu-latest
     steps:
     - name: Run tests
