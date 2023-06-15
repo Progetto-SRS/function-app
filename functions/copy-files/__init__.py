@@ -12,7 +12,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         try:
             req_body = req.get_json()
         except (ValueError, KeyError):
-            return func.HttpResponse(body="ERRORE -> Specificare i parametri nomeContainerOrigine, accountStorageOrigine, nomeContainerDestinazione e accountStorageDestinazione", status_code=400) 
+            return func.HttpResponse(body="ERRORE -> Mancano i parametri nomeContainerOrigine, accountStorageOrigine, nomeContainerDestinazione e accountStorageDestinazione", status_code=400) 
         else:
             nomeContainerOrigine = req_body.get('nomeContainerOrigine')
             accountStorageOrigine = req_body.get('accountStorageOrigine')
@@ -38,6 +38,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
         return func.HttpResponse(body="SUCCESSO", status_code=200)
     else:
-        return func.HttpResponse(body="ERRORE -> Specificare i parametri nomeContainer e accountStorage", status_code=400)
+        return func.HttpResponse(body="ERRORE -> Mancano i parametri nomeContainerOrigine, accountStorageOrigine, nomeContainerDestinazione e accountStorageDestinazione", status_code=400)
 
     #{ "nomeContainerOrigine": "sitoweb", "accountStorageOrigine": "devstoragesrs", "nomeContainerDestinazione": "$web", "accountStorageDestinazione": "webappprova" }
