@@ -9,7 +9,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         try:
             req_body = req.get_json()
         except (ValueError, KeyError):
-            return func.HttpResponse("ERRORE -> Specificare il nome del sito tramite il parametro nomeSito", status_code=200) 
+            return func.HttpResponse("ERRORE -> Specificare il nome del sito tramite il parametro nomeSito", status_code=400) 
         else:
             nomeSito = req_body.get('nomeSito')
 
@@ -32,4 +32,4 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         else:
             return func.HttpResponse("USATO", status_code=200)
     else:
-        return func.HttpResponse("ERRORE -> Specificare il nome del sito tramite il parametro nomeSito", status_code=200) 
+        return func.HttpResponse("ERRORE -> Specificare il nome del sito tramite il parametro nomeSito", status_code=400) 

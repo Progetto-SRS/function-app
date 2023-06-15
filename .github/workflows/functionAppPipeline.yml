@@ -40,7 +40,7 @@ env:
   PYTHON_VERSION: '3.10'
 
 jobs:
-  build-and-deploy-test-env:
+  build:
     runs-on: ubuntu-latest
     environment: test
     steps:
@@ -60,7 +60,11 @@ jobs:
         pip install -r requirements.txt --target=".python_packages/lib/site-packages"
         popd
 
-    - name: Run Azure Functions Action
+  deploy-test-env:
+    runs-on: ubuntu-latest
+    environment: test
+    steps:     
+    - name: Deploy Azure Functions in test environment
       uses: Azure/functions-action@v1
       id: fa
       with:
@@ -69,3 +73,10 @@ jobs:
         publish-profile: ${{ secrets.AZURE_TEST_FUNCTIONAPP_PUBLISH_PROFILE }}
         scm-do-build-during-deployment: true
         enable-oryx-build: true
+
+  test-functions:
+    runs-on: ubuntu-latest
+    environment: test
+    steps:
+    - name: Run unit tests
+      run: python -m pytest --import-mode=append tests/
