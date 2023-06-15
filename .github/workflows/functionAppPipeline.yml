@@ -49,5 +49,8 @@ jobs:
     needs: build-and-deploy-test-env
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout GitHub Action
+      uses: actions/checkout@v3
+
     - name: Run tests
       run: python tests/test-check-name.py
