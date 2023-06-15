@@ -58,8 +58,11 @@ jobs:
     - name: Checkout GitHub Action
       uses: actions/checkout@v3
 
-    - name: Run tests of wrong requests
-      run: python tests/test-parameters-input.py
+    - name: Run tests on wrong input parameters of requests
+      run: python tests/test-wrong-input-parameters.py
 
-    - name: Run tests of successful requests 
+    - name: Run tests on website creation, activation, deactivation and deletion
       run: python tests/test-website-lifecycle.py
+
+    - name: Run tests on containers and copy of files
+      run: python tests/test-containers.py
