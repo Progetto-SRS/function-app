@@ -31,14 +31,15 @@ on:
     - 'delete-container/**'
     - 'disable-static-website/**'
     - 'enable-static-website/**'
+  workflow_dispatch:
 
 env:
-  AZURE_FUNCTIONAPP_NAME: 'test-functions-srs'   
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'       
-  PYTHON_VERSION: '3.10'                    
+  AZURE_TEST_FUNCTIONAPP_NAME: 'test-functions-srs'
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
+  PYTHON_VERSION: '3.10'
 
 jobs:
-  build:
+  build-and-deploy-test-env:
     runs-on: ubuntu-latest
     environment: test
     steps:
@@ -57,16 +58,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt --target=".python_packages/lib/site-packages"
         popd
-
-  deploy:
-    runs-on: ubuntu-latest
-    environment: test
-    steps:
+        
     - name: Run Azure Functions Action
       uses: Azure/functions-action@v1
       id: fa
       with:
-        app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+        app-name: ${{ env.AZURE_TEST_FUNCTIONAPP_NAME }}
         package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
         publish-profile: ${{ secrets.AZURE_TEST_FUNCTIONAPP_PUBLISH_PROFILE }}
         scm-do-build-during-deployment: true
