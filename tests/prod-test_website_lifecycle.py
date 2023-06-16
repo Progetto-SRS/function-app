@@ -41,4 +41,3 @@ time.sleep(60)
 response = requests.post("https://prod-functions-srs.azurewebsites.net/api/delete-account-storage", json={"nomeSito": nomeSito, "gruppoRisorse": gruppoRisorse})
 assert response.status_code == 200
 assert response.content == b"SUCCESSO"
-time.sleep(60)
