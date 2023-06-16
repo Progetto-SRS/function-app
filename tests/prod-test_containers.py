@@ -11,7 +11,7 @@ time.sleep(60)
 response = requests.post("https://prod-functions-srs.azurewebsites.net/api/copy-files", json={"nomeContainerOrigine": "$web", "accountStorageOrigine": "prodstoragesrs", "nomeContainerDestinazione": "testpipeline", "accountStorageDestinazione": "prodstoragesrs"})
 assert response.status_code == 200
 assert response.content == b"SUCCESSO"
-response = requests.get("https://teststoragesrs.blob.core.windows.net/testpipeline/index.html")
+response = requests.get("https://prodstoragesrs.blob.core.windows.net/testpipeline/index.html")
 assert response.status_code == 200
 assert b"Sito prova" in response.content
 time.sleep(60)
