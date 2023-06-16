@@ -1,4 +1,5 @@
 import requests
+import time
 
 nomeSito = "testwebapp"
 gruppoRisorse = "test-env"
@@ -22,16 +23,19 @@ assert disponibilita == b"DISPONIBILE"
 response = requests.post("https://test-functions-srs.azurewebsites.net/api/create-account-storage", json={"nomeSito": nomeSito, "gruppoRisorse": gruppoRisorse})
 assert response.status_code == 200
 assert response.content == b"SUCCESSO"
+time.sleep(60)
 
 # Controllo che il servizio enable-static-website restituisca 'SUCCESSO'
 response = requests.post("https://test-functions-srs.azurewebsites.net/api/enable-static-website", json={"nomeSito": nomeSito})
 assert response.status_code == 200
 assert response.content == b"SUCCESSO"
+time.sleep(60)
 
 # Controllo che il servizio disable-static-website restituisca 'SUCCESSO'
 response = requests.post("https://test-functions-srs.azurewebsites.net/api/disable-static-website", json={"nomeSito": nomeSito})
 assert response.status_code == 200
 assert response.content == b"SUCCESSO"
+time.sleep(60)
 
 # Controllo che il servizio delete-account-storage restituisca 'SUCCESSO'
 response = requests.post("https://test-functions-srs.azurewebsites.net/api/delete-account-storage", json={"nomeSito": nomeSito, "gruppoRisorse": gruppoRisorse})
