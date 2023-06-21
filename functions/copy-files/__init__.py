@@ -39,5 +39,3 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse(body="SUCCESSO", status_code=200)
     else:
         return func.HttpResponse(body="ERRORE -> Mancano i parametri nomeContainerOrigine, accountStorageOrigine, nomeContainerDestinazione e accountStorageDestinazione", status_code=400)
-
-    #{ "nomeContainerOrigine": "sitoweb", "accountStorageOrigine": "devstoragesrs", "nomeContainerDestinazione": "$web", "accountStorageDestinazione": "webappprova" }
