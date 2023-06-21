@@ -2,7 +2,7 @@ import requests
 import time
 
 nomeSito = "testwebappsrs"
-gruppoRisorse = "test-env"
+gruppoRisorse = "users-env"
 
 # Controllo che il servizio check-name restituisca 'USATO'
 response = requests.post("https://test-functions-srs.azurewebsites.net/api/check-name", json={"nomeSito": "teststoragesrs"})
