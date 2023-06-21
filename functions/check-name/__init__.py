@@ -15,7 +15,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     if nomeSito:
         credential = DefaultAzureCredential()
-        subscription_id = "8002e241-270d-41b2-9c60-f5e2d8d15f67"
+        subscription_id = "6a6034ce-5623-4822-8c31-de299765adbe"
         storage_account_name = nomeSito
 
         storage_client = StorageManagementClient(credential, subscription_id)
