@@ -3,6 +3,7 @@ import requests
 response = requests.get("https://prod-functions-srs.azurewebsites.net/api/check-name")
 assert response.status_code == 400
 assert response.content == b"ERRORE -> Manca il parametro nomeSito"
+print("ok")
 
 response = requests.get("https://prod-functions-srs.azurewebsites.net/api/copy-files")
 assert response.status_code == 400
